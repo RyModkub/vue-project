@@ -7,7 +7,7 @@
     <p>โครงสร้างโปรเจกต์ Vue.js ที่สร้างจาก Vue CLI มีลักษณะดังนี้:</p>
     <div>
       <!-- ช่องสำหรับใส่รูปโครงสร้างโปรเจกต์ -->
-      <img src="/path-to-your-image/project-structure.png" alt="โครงสร้างโปรเจกต์" style="width: 100%; max-width: 600px;">
+      <img :src="require('@/assets/project-structure.png')" alt="โครงสร้างโปรเจกต์" style="width: 100%; max-width: 600px;">
     </div>
     
     <h2>รายละเอียดของไฟล์หลัก</h2>
@@ -17,7 +17,7 @@
     <p>โฟลเดอร์นี้เก็บทุก package หรือ dependencies ที่โปรเจกต์ของคุณใช้ ซึ่งจะถูกติดตั้งโดย NPM หรือ Yarn เมื่อคุณรันคำสั่ง <code>npm install</code> หรือ <code>yarn install</code></p>
     <div>
       <!-- ช่องสำหรับใส่รูป node_modules -->
-      <img src="/path-to-your-image/node_modules.png" alt="node_modules" style="width: 100%; max-width: 600px;">
+      <img :src="require('@/assets/node_modules.png')" alt="node_modules" style="width: 100%; max-width: 600px;">
     </div>
 
     <!-- public -->
@@ -28,7 +28,7 @@
     </ul>
     <div>
       <!-- ช่องสำหรับใส่รูป public -->
-      <img src="/path-to-your-image/public.png" alt="public" style="width: 100%; max-width: 600px;">
+      <img :src="require('@/assets/public.png')" alt="public" style="width: 100%; max-width: 600px;">
     </div>
 
     <!-- src -->
@@ -43,7 +43,7 @@
     </ul>
     <div>
       <!-- ช่องสำหรับใส่รูป src -->
-      <img src="/path-to-your-image/src.png" alt="src" style="width: 100%; max-width: 600px;">
+      <img :src="require('@/assets/src.png')" alt="src" style="width: 100%; max-width: 600px;">
     </div>
 
     <h3>รายละเอียดโฟลเดอร์ย่อยใน src/</h3>
@@ -52,7 +52,7 @@
     <p>เก็บไฟล์ที่ไม่ใช่โค้ด เช่น รูปภาพ, ฟอนต์, ไฟล์ CSS หรือสไตล์ที่ใช้ในโปรเจกต์</p>
     <div>
       <!-- ช่องสำหรับใส่รูป assets -->
-      <img src="/path-to-your-image/assets.png" alt="assets" style="width: 100%; max-width: 600px;">
+      <img :src="require('@/assets/assets.png')" alt="assets" style="width: 100%; max-width: 600px;">
     </div>
 
     <!-- components -->
@@ -60,36 +60,29 @@
     <p>โฟลเดอร์นี้ใช้เก็บ Vue components ซึ่งแต่ละ component จะรับผิดชอบการแสดงผล UI บางส่วนของแอปพลิเคชัน</p>
     <div>
       <!-- ช่องสำหรับใส่รูป components -->
-      <img src="/path-to-your-image/components.png" alt="components" style="width: 100%; max-width: 600px;">
+      <img :src="require('@/assets/components.png')" alt="components" style="width: 100%; max-width: 600px;">
     </div>
 
-    <!-- views -->
-    <h4>3.3 views/</h4>
-    <p>โฟลเดอร์นี้เก็บไฟล์ Vue ที่ใช้ร่วมกับ Vue Router ในการสร้างหน้าเว็บต่างๆ เช่น หน้าแรก, หน้ารายละเอียด, หรือหน้าสำหรับผู้ใช้ล็อกอิน</p>
-    <div>
-      <!-- ช่องสำหรับใส่รูป views -->
-      <img src="/path-to-your-image/views.png" alt="views" style="width: 100%; max-width: 600px;">
-    </div>
 
     <h3>4. package.json</h3>
     <p>ไฟล์นี้จะเก็บข้อมูลสำคัญของโปรเจกต์ เช่น ข้อมูลของ dependencies ที่โปรเจกต์ต้องการ, สคริปต์ที่สามารถรันได้ และข้อมูลเกี่ยวกับการตั้งค่าอื่นๆ</p>
     <div>
       <!-- ช่องสำหรับใส่รูป package.json -->
-      <img src="/path-to-your-image/package-json.png" alt="package.json" style="width: 100%; max-width: 600px;">
+      <img :src="require('@/assets/package-json.png')" alt="package.json" style="width: 100%; max-width: 600px;">
     </div>
 
     <h3>5. babel.config.js</h3>
     <p>ไฟล์นี้เก็บการตั้งค่าของ Babel ซึ่งใช้ในการแปลง JavaScript จากรูปแบบ ES6 หรือ ES7 ให้สามารถทำงานในเบราว์เซอร์ที่รองรับ JavaScript รุ่นเก่าได้</p>
     <div>
       <!-- ช่องสำหรับใส่รูป babel.config.js -->
-      <img src="/path-to-your-image/babel-config.png" alt="babel.config.js" style="width: 100%; max-width: 600px;">
+      <img :src="require('@/assets/babel-config.png')" alt="babel.config.js" style="width: 100%; max-width: 600px;">
     </div>
 
     <h3>6. vue.config.js</h3>
     <p>ไฟล์นี้ใช้สำหรับการตั้งค่าคอนฟิกเฉพาะของ Vue CLI เช่น การตั้งค่าเกี่ยวกับการปรับแต่งการ build หรือการตั้งค่า proxy server</p>
     <div>
       <!-- ช่องสำหรับใส่รูป vue.config.js -->
-      <img src="/path-to-your-image/vue-config.png" alt="vue.config.js" style="width: 100%; max-width: 600px;">
+      <img :src="require('@/assets/vue-config.png')" alt="vue.config.js" style="width: 100%; max-width: 600px;">
     </div>
 
     <!-- เพิ่มปุ่มย้อนไปหน้า Home และไป Basic Usage -->
