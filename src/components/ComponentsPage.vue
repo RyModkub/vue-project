@@ -1,132 +1,81 @@
 <template>
   <div class="container">
-    <div class="row">
-      <div class="col-8 mx-auto text-left">
-        <h2>การสร้างคอมโพเนนต์ใน Vue.js</h2>
-        <p>คอมโพเนนต์ใน Vue ช่วยให้โค้ดมีโครงสร้างที่เป็นระเบียบและนำกลับมาใช้ใหม่ได้</p>
-        <h5>ตัวอย่างคอมโพเนนต์พื้นฐาน</h5>
-        <p>คอมโพเนนต์ที่ใช้ข้อมูลจาก `data`</p>
-        <pre><code style="text-align: left;">
-          export default { <br>
-            data() { <br> 
-              return { <br>
-                message: "Hello Vue!" <br>
-              }; <br>
-            } <br>
-          };
-        </code></pre><br>
+    <h2>การสร้างคอมโพเนนต์ใน Vue.js</h2>
+    <p>คอมโพเนนต์ใน Vue ช่วยให้โค้ดมีโครงสร้างที่เป็นระเบียบและนำกลับมาใช้ใหม่ได้</p>
+
+    <!-- Tabs -->
+    <div class="tabs">
+      <button @click="activeTab = 'data'" :class="{'active-tab': activeTab === 'data'}">Data</button>
+      <button @click="activeTab = 'props'" :class="{'active-tab': activeTab === 'props'}">Props</button>
+      <button @click="activeTab = 'methods'" :class="{'active-tab': activeTab === 'methods'}">Methods</button>
+      <button @click="activeTab = 'computed'" :class="{'active-tab': activeTab === 'computed'}">Computed</button>
+      <button @click="activeTab = 'events'" :class="{'active-tab': activeTab === 'events'}">Events</button>
+    </div>
+
+    <!-- Tab Content -->
+    <div class="tab-content">
+      <div v-if="activeTab === 'data'">
+        <h5>การใช้ Data</h5>
+        <pre><code v-html="formatCode(dataExample)"></code></pre>
+         <h5>โค้ดของแสดงผล Data</h5>
+        <pre><code v-html="formatCode(Datacode)"></code></pre>
         <p>ผลลัพธ์: {{ message }}</p>
-
-        <!-- Props -->
-         <h5>การใช้งาน Props</h5>
-         <p>การส่งข้อมูลจากคอมโพเนนต์หลักไปยังคอมโพเนนต์ย่อย</p>
-         <pre><code style="text-align: left;" v-pre>
-          export default { <br> 
-            name: "Greeting", <br>
-            props: ['name'], <br>
-            template: '&lt;p&gt;Hello, {{ name }}!&lt;/p&gt;' <br>
-          };
-         </code></pre><br>
-         <p>ในคอมโพเนนต์หลัก</p> <br>
-         <pre><code>&lt;Greeting :name="'Vue User'" /&gt;</code></pre><br>
-
-         <!-- Methods -->
-          <h5>การใช้ Methods</h5>
-          <p>วิธีการกำหนดฟังก์ชันในคอมโพเนนต์</p>
-          <pre><code style="text-align: left;">
-            export default { <br>
-              name: "Counter", <br>
-              data() { <br>
-                return { <br>
-                  count: 0 <br>
-                }; <br>
-              }, <br>
-              methods: { <br>
-                increment() { <br>
-                  this.count++; <br>
-                } <br>
-              } <br>
-            }; 
-          </code></pre><br>
-          <p>ปุ่มเพิ่มจำนวน: <button @click="increment">เพิ่ม</button></p>
-          <p>จำนวน: {{ count }}</p>
-
-          <!-- Computed Properties -->
-           <h5>การใช้ Computed Properties</h5>
-           <p>คอมโพเนนต์ที่ใช้การคำนวณค่าจากข้อมูล</p>
-           <pre><code style="text-align: left;">
-            export default { <br>
-              name: "FullName", <br>
-              data() { <br>
-                return { <br>  
-                  firstName: "John", <br>
-                  lastName: "Doe" <br>
-                }; <br>
-              }, <br>
-              computed: { <br>
-                fullName() { <br>
-                  return `${this.firstName} ${this.lastName}`; <br>
-                } <br>
-              } <br>
-            };
-           </code></pre><br>
-           <p>ชื่อเต็ม : {{ fullName }}</p>
-
-           <!-- Events -->
-           <h5>การใช้ Events</h5>
-           <p>การส่งข้อมูลจากคอมโพเนนต์ย่อยกลับไปที่คอมโพเนนต์หลัก</p>
-           <pre><code style="text-align: left;">
-            export default { <br>
-              name: "ChildComponent", <br>
-              methods: { <br>
-                sedData() { <br>
-                  this.$emit('sendData', 'ข้อมูลจากลูก') <br>
-                } <br> 
-              } <br>
-            };
-           </code></pre><br>
-           <p>ในคอมโพเนนต์หลัก</p>
-           <pre><code>&lt;ChildComponent @sendData="receiveData" /&gt;</code></pre><br>
-           <p>ข้อมูลจากลูก: {{ dataFromChild }}</p>
-           
-           <!-- ตัวอย่างการใช้งานทั้งหมด -->
-            <p>ตัวอย่างการรวมคอมโพเนนต์ทั้งหมดในแอปพลิเคชัน</p>
-            <pre><code style="text-align: left;">
-              &lt;template&gt;<br>
-              &lt;div&gt;<br>
-              &lt;Greeting :name="'Vue User'"/&gt;<br>
-              &lt;Counter /&gt;<br>
-              &lt;FullName /&gt;<br>
-              &lt;ChildComponent @sendData="receiveData"/&gt;<br>
-              &lt;/div&gt;<br>
-              &lt;/template&gt;
-            </code></pre>
-
-            <!-- ปุ่มย้อนกลับไปที่หน้า Basic และ Components -->
-             <div style="justify-items: start;">
-              <Greeting/>
-              <Counter/>
-              <FullName/>
-              <ChildComponent/>
-             </div>
       </div>
-      <div class="row mt-4">
-        <div class="col-6 d-flex justify-content-start"><router-link to="/CSSpage" class="btn btn-success">ย้อนกลับ</router-link></div>
-        <div class="col-6 d-flex justify-content-end"><router-link to="/StateandVuex" class="btn btn-success">ต่อไป</router-link></div>
+
+      <div v-if="activeTab === 'props'">
+        <h5>การใช้ Props</h5>
+        <pre><code v-html="formatCode(propsExample)"></code></pre>
+        <h5>โค้ดของ GreetingComponent.vue</h5>
+        <pre><code v-html="formatCode(greetingComponentCode)"></code></pre>
+        <Greeting :name="'Vue User'" />
+      </div>
+
+      <div v-if="activeTab === 'methods'">
+        <h5>การใช้ Methods</h5>
+        <pre><code v-html="formatCode(methodsExample)"></code></pre>
+        
+        <h5>โค้ดของ CounterComponent.vue</h5>
+        <pre><code v-html="formatCode(counterComponentCode)"></code></pre>
+        
+        <Counter />
+      </div>
+
+      <div v-if="activeTab === 'computed'">
+        <h5>การใช้ Computed Properties</h5>
+        <pre><code v-html="formatCode(computedExample)"></code></pre>
+        <h5>โค้ดของ FullName.vue</h5>
+        <pre><code v-html="formatCode(fullNameComponentCode)"></code></pre>
+        <FullName />
+      </div>
+
+      <div v-if="activeTab === 'events'">
+        <h5>การใช้ Events</h5>
+        <pre><code v-html="formatCode(eventsExample)"></code></pre>
+        <h5>โค้ดของ ChildComponent.vue</h5>
+        <pre><code v-html="formatCode(childComponentCode)"></code></pre>
+        <ChildComponent @sendData="receiveData" />
+        <p>ข้อมูลที่ได้รับจากลูก: {{ dataFromChild }}</p>
+      </div>
+    </div>
+
+    <!-- ปุ่มเปลี่ยนหน้า -->
+    <div class="row mt-4">
+      <div class="col-6 d-flex justify-content-start">
+        <router-link to="/CSSpage" class="btn btn-success">ย้อนกลับ</router-link>
+      </div>
+      <div class="col-6 d-flex justify-content-end">
+        <router-link to="/StateandVuex" class="btn btn-success">ต่อไป</router-link>
       </div>
     </div>
   </div>
 </template>
-  
+
 <script>
-// เพิ่มคอมโพเนนต์ที่ใช้ภายในนี้
 import Greeting from './GreetingComponent.vue'
 import Counter from './CounterComponent.vue'
 import FullName from './FullName.vue'
 import ChildComponent from './ChildComponent.vue'
-import '@/assets/Style.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+
 export default {
   name: "ComponentsPage",
   components: {
@@ -138,21 +87,187 @@ export default {
   data() {
     return {
       message: "Hello Vue!",
-      dataFromChild: ''
+      dataFromChild: '',
+      activeTab: 'data',
+      
+      // ตัวอย่างโค้ด
+      dataExample: `export default {
+  data() {
+    return {
+      message: "Hello Vue!"
+    };
+  }
+};`,
+      Datacode: `<template>
+      <p>ผลลัพธ์: {{ message }}</p>
+</template>` 
+      ,
+
+      propsExample: `<template>
+      <Greeting :name="'Vue User'" />
+</template>
+
+<script>
+      import Greeting from './GreetingComponent.vue'
+      
+      export default {
+        name: "ComponentsPage",
+          components: {
+            Greeting
+  }
+</ script>
+      `,
+
+      methodsExample: `<template>
+      <Counter />
+</template>
+
+<script>
+      import Counter from './CounterComponent.vue'    
+      export default {
+        name: "ComponentsPage",
+          components: {
+            Counter           
+  }
+</ script>`,
+
+      computedExample: `<template>
+      <FullName />
+</template>
+
+<script>
+      import FullName from './FullName.vue'     
+      export default {
+        name: "ComponentsPage",
+          components: {         
+            FullName
+  }
+</ script>`,
+
+      eventsExample: `<template>
+      <ChildComponent @sendData="receiveData" />
+        <p>ข้อมูลที่ได้รับจากลูก: {{ dataFromChild }}</p>
+</template>
+
+<script>     
+      import ChildComponent from './ChildComponent.vue'
+      export default {
+        name: "ComponentsPage",
+          components: {          
+            ChildComponent
+  }
+</ script>`,
+
+      // โค้ดของ CounterComponent.vue
+      counterComponentCode: `<template>
+  <div>
+    <p>จำนวนครั้ง: {{ count }}</p>
+    <button @click="increment">เพิ่มค่า</button>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'CounterComponent',
+  data() {
+    return {
+      count: 0
+    };
+  },
+  methods: {
+    increment() {
+      this.count++;
+    }
+  }
+};
+</ script>`,
+
+      // โค้ดของ GreetingComponent.vue
+      greetingComponentCode: `<template>
+  <p>Hello, {{ name }}!</p>
+</template>
+
+<script>
+export default {
+  name: "Greeting",
+  props: ['name']
+};
+</ script>`,
+
+      // โค้ดของ FullName.vue
+      fullNameComponentCode: `<template>
+  <div>
+    <p>Full Name: {{ fullName }}</p>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "FullName",
+  data() {
+    return {
+      firstName: "Rose",
+      lastName: "Jack"
+    };
+  },
+  computed: {
+    fullName() {
+      return \`\${this.firstName} \${this.lastName}\`;
+    }
+  }
+};
+</ script>`,
+
+      // โค้ดของ ChildComponent.vue
+      childComponentCode: `<template>
+  <button @click="sendData">ส่งข้อมูล</button>
+</template>
+
+<script>
+export default {
+  name: 'ChildComponent',
+  methods: {
+    sendData() {
+      this.$emit('sendData', 'ข้อมูลจากลูก');
+    }
+  }
+};
+</ script>`,
+
     };
   },
   methods: {
     receiveData(data) {
       this.dataFromChild = data;
+    },
+    formatCode(code) {
+      return `<pre style="white-space: pre-wrap; text-align: left;">${code.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</pre>`;
     }
   }
 };
+
 </script>
 
-<style>
+<style scoped>
+h5{
+  margin: auto;
+  padding: 20px;
+  text-align: center;
+}
+p{
+  margin: auto;
+  padding: 20px;
+  text-align: center;
+}
 div {
   text-align: center;
   margin-top: 20px;
+}
+.container {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+  text-align: center;
 }
 pre {
   white-space: pre;

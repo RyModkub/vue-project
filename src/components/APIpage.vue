@@ -4,6 +4,7 @@
       <div class="col-8 mx-auto text-left">
         <h2>การใช้งาน API ใน Vue.js</h2>
         <div>
+          <button @click="activeTab = 'overview'" :class="{ 'active-tab': activeTab === 'overview' }">API คืออะไร?</button>
           <button @click="activeTab = 'get'" :class="{'active-tab': activeTab === 'get'}">GET</button>
           <button @click="activeTab = 'post'" :class="{'active-tab': activeTab === 'post'}">POST</button>
           <button @click="activeTab = 'put'" :class="{'active-tab': activeTab === 'put'}">PUT</button>
@@ -11,193 +12,270 @@
         </div>
 
         <!-- get -->
-         <div v-if="activeTab === 'get'">
+        <div v-if="activeTab === 'overview'">
+            <div class="container">
+    <h2>ทฤษฎีเกี่ยวกับ API ใน Vue.js</h2>
+    <p>
+      API (Application Programming Interface) คือ ชุดคำสั่งที่ช่วยให้ระบบต่าง ๆ
+      สื่อสารกันได้ โดย Vue.js สามารถใช้ API เพื่อดึงข้อมูลจาก Backend (เซิร์ฟเวอร์)
+      หรือแหล่งข้อมูลอื่น ๆ มาแสดงผลบน UI
+    </p>
+
+    <h3>API ใน Vue.js ทำงานอย่างไร?</h3>
+    <ul>
+      <li>Vue Component ทำการร้องขอข้อมูล (Request) ไปยัง API</li>
+      <li>API ประมวลผลคำขอ และส่งข้อมูลกลับมา (Response)</li>
+      <li>Vue Component รับข้อมูล และอัปเดต UI ให้แสดงผลข้อมูลนั้น</li>
+    </ul>
+
+    <h3>วิธีเรียก API ใน Vue.js โดยใช้ fetch()</h3>
+    <p>
+      fetch() เป็น built-in JavaScript API ที่ใช้สำหรับการดึงข้อมูลจากเซิร์ฟเวอร์ โดยไม่ต้องติดตั้งไลบรารีเพิ่ม
+      สามารถใช้ใน Vue.js ได้ง่าย ๆ ใน Options API
+    </p>
+
+    <h4>✅ ข้อดีของ fetch()</h4>
+    <ul>
+      <li>ไม่มี dependency เพิ่มเติม (Built-in)</li>
+      <li>ใช้งานได้กับ JavaScript และ Vue ทุกเวอร์ชัน</li>
+    </ul>
+
+    <h4>❌ ข้อเสียของ fetch()</h4>
+    <ul>
+      <li>ใช้ .then() เยอะ ทำให้โค้ดยุ่งเหยิง</li>
+      <li>ต้องแปลงข้อมูล JSON เอง</li>
+      <li>ไม่มีการจัดการ error ในตัว ต้องเขียนเอง</li>
+    </ul>
+
+    <h3>ตัวอย่าง fetch() ใน Vue 3 (Options API)</h3>
+
+    <pre><code v-html="formatCode(ONE)"></code></pre>
+    <ul>
+    <li>✅ โหลด API เมื่อคอมโพเนนต์ถูก mount (mounted())</li>
+    <li>✅ ใช้ fetch() ดึงข้อมูล JSON และแสดงผลทันที </li>
+    </ul>
+    <pre><code v-html="formatCode(TWO)"></code></pre>
+    <ul>
+    <li>✅ ใช้ v-for → วนลูปแสดงรายชื่อผู้ใช้ที่ได้จาก API</li>
+    <li>✅ ใช้ :key="user.id" → ป้องกัน Vue แจ้งเตือนเกี่ยวกับคีย์ที่ซ้ำ</li>
+    <li>✅ ใช้ data() → สร้างตัวแปร users เพื่อเก็บข้อมูล</li>
+    <li>✅ ใช้ mounted() → ดึงข้อมูลจาก API ทันทีที่โหลดหน้าเว็บ</li>
+    <li>✅ ใช้ fetch() → เรียก API แล้วแปลง response เป็น JSON</li>
+    </ul>
+    <h3>✅ สรุป</h3>
+    <ul>
+      <li>โค้ดนี้ใช้ fetch() เพื่อโหลดข้อมูลผู้ใช้จาก API และแสดงใน <code>&lt;ul&gt;</code></li>
+      <li><code>mounted()</code> ช่วยให้ API ถูกเรียกเมื่อคอมโพเนนต์โหลดเสร็จ</li>
+      <li>ใช้โค้ดน้อย อ่านง่าย แต่ไม่มีการจัดการ error (ถ้าต้องการ error handling ต้องเพิ่ม <code>try...catch</code>)</li>
+    </ul>
+
+    <h3>หลักการทำงานของ API กับ Vue.js</h3>
+    <p>API มีหลายรูปแบบ ซึ่ง Vue.js สามารถใช้ได้ เช่น:</p>
+    <ul>
+      <li><b>GET:</b> ใช้สำหรับ ขอข้อมูล จาก API โดยไม่มีการเปลี่ยนแปลงข้อมูล</li>
+      <li><b>POST:</b> ใช้สำหรับ สร้างข้อมูลใหม่ เช่น เพิ่มผู้ใช้ใหม่, บันทึกฟอร์ม</li>
+      <li><b>PUT:</b> ใช้สำหรับ แก้ไขข้อมูลทั้งก้อน เช่น อัปเดตข้อมูลผู้ใช้</li>
+      <li><b>DELETE:</b> ใช้สำหรับ ลบข้อมูลจากเซิร์ฟเวอร์ เช่น ลบผู้ใช้, ลบโพสต์</li>
+    </ul>
+  </div>
+        
+        </div>
+         <!-- GET -->
+        <div v-if="activeTab === 'get'">
           <h5>GET Request</h5>
-          <h5>ใช้สำหรับ ขอข้อมูล จาก API โดยไม่มีการเปลี่ยนแปลงข้อมูล</h5>
+          <h5>ใช้สำหรับ ขอข้อมูลจาก API โดยไม่มีการเปลี่ยนแปลงข้อมูล</h5>
           <button @click="fetchData">ดึงข้อมูล</button>
           <ul>
-            <li v-for="item in item" :key="item.id">{{ item.name }}</li>
+            <li v-for="item in items" :key="item.id">ID: {{ item.id }} Name: {{ item.name }}</li>
           </ul>
-          
+
           <div>
-            <!-- โค้ดฝั่ง Vue.js -->
             <h5>Vue.js (Client-side)</h5>
             <pre><code style="text-align: left;">
-              axios.get(this.apiUrl) // ส่งคำขอ GET ไปยังเซิร์ฟเวอร์เพื่อดึงข้อมูล <br>
-              .then(response => {  // เมื่อได้รับข้อมูลจากเซิร์ฟเวอร์ <br>
-                this.items = response.data;  // กำหนดข้อมูลที่ได้รับให้กับ items <br>
+              fetch(this.apiUrl)  // ส่งคำขอ GET ไปยังเซิร์ฟเวอร์เพื่อดึงข้อมูล <br>
+              .then(response => response.json())  // แปลงข้อมูลที่ได้เป็น JSON <br>
+              .then(data => {  // เมื่อได้รับข้อมูลจากเซิร์ฟเวอร์ <br>
+                this.items = data;  // กำหนดข้อมูลที่ได้รับให้กับ items <br>
               }) <br>
               .catch(error => {  // หากเกิดข้อผิดพลาด <br>
                 console.error("เกิดข้อผิดพลาดในการดึงข้อมูล", error);  // แสดงข้อผิดพลาด <br>
               });
-            </code></pre><br>
-            <!-- โค้ดฝั่ง Server.js -->
-            <h5>Server.js (Server-side)</h5>
-            <pre><code style="text-align: left;">
-              app.get('/items', (req, res) => { // รับคำขอ GET จาก client <br>
-                res.json(items); // ส่งข้อมูลรายการ items กลับไปยัง client
-              });
-            </code></pre><br>
-            <p>คำอธิบาย</p>
-              <ul style="text-align: left;">
-                <li><strong>ฝั่ง Client (Vue.js):</strong> ส่งคำขอ GET ไปยัง API ด้วย `axios.get(this.apiUrl)` เพื่อดึงข้อมูลจากเซิร์ฟเวอร์</li>
-                <li><strong>ฝั่ง Server (Server.js):</strong> เซิร์ฟเวอร์รับคำขอที่ URL `/items` และตอบกลับข้อมูลในรูปแบบ JSON</li>
-              </ul>
+            </code></pre>
           </div>
-         </div>
-         <!-- post -->
-         <div v-if="activeTab === 'post'">
+        </div>
+
+        <!-- POST -->
+        <div v-if="activeTab === 'post'">
           <h5>POST Request</h5>
           <h5>ใช้สำหรับ สร้างข้อมูลใหม่ เช่น เพิ่มผู้ใช้ใหม่, บันทึกฟอร์ม</h5>
-          <input v-model="newItem" placeholder="เพิ่มข้อมูลใหม่"> 
-          <button style="margin: 10px;" @click="addItem">เพิ่มข้อมูล</button>
-          <div>
-            <!-- โค้ดฝั่ง Vue.js -->
-             <h5>Vue.js (Client-side)</h5>
-             <pre><code style="text-align: left;">
-              axios.post(this.apiUrl, { name: this.newItem })  // ส่งข้อมูลใหม่ไปยังเซิร์ฟเวอร์ <br>
-              .then(response => {  // เมื่อข้อมูลถูกเพิ่มสำเร็จ <br>
-                this.fetchData();  // เรียกข้อมูลใหม่เพื่ออัปเดตการแสดงผล <br>
-              }) <br>
-              .catch(error => {  // หากเกิดข้อผิดพลาด <br>
-                console.error("เกิดข้อผิดพลาดในการเพิ่มข้อมูล", error);  // แสดงข้อผิดพลาด <br>
-              }); 
-             </code></pre><br>
-             <!-- โค้ดฝั่ง Server.js -->
-              <h5>Server.js (Server-side)</h5>
-              <pre><code style="text-align: left;">
-                app.post('/items', (req, res) => {  // รับคำขอ POST จาก client <br>
-                  const newItem = req.body;  // รับข้อมูลใหม่จากคำขอ <br>
-                  newItem.id = items.length + 1;  // กำหนด ID ใหม่ <br>
-                  items.push(newItem);  // เพิ่มข้อมูลใหม่ลงในรายการ <br>
-                  res.status(201).json(newItem);  // ส่งข้อมูลที่ถูกเพิ่มกลับไปยัง client <br>
-                });
-              </code></pre><br>
-              <ul style="text-align: left;">
-                <li><strong>ฝั่ง Client (Vue.js):</strong> ส่งข้อมูลใหม่ผ่านคำขอ POST ไปยัง API เพื่อเพิ่มข้อมูลใหม่</li>
-                <li><strong>ฝั่ง Server (Server.js):</strong> รับข้อมูลจากคำขอ POST แล้วเพิ่มข้อมูลใหม่ไปยังรายการ `items`</li>
-              </ul>
-          </div>
-         </div>
-         <!-- put -->
-          <div v-if="activeTab === 'put'">
-            <h5>PUT Request</h5>
-            <h5>ใช้สำหรับ แก้ไขข้อมูลทั้งก้อน เช่น อัปเดตข้อมูลผู้ใช้</h5>
-            <input v-model="updateId" placeholder="ID ที่ต้องการแก้ไข"><br><br>
-            <input v-model="updateValue" placeholder="ค่าใหม่"><br>
-            <button @click="updateItem">อัปเดตข้อมูล</button>
+          <input v-model="newItem" placeholder="เพิ่มข้อมูลใหม่">
+          <button @click="addItem">เพิ่มข้อมูล</button>
 
-            <!-- โค้ดฝั่ง Vue.js -->
-             <h5>Vue.js (Client-side)</h5>
-             <pre><code style="text-align: left;">
-              axios.put(`${this.apiUrl}/${this.updateId}`, { name: this.updateValue }) <br>
-              // ส่งคำขอ PUT ไปยัง API <br>
-              .then(response => {  // เมื่อข้อมูลถูกอัปเดตสำเร็จ <br>
-                this.fetchData();  // เรียกข้อมูลใหม่เพื่ออัปเดตการแสดงผล <br>
-              }) <br>
-              .catch(error => {  // หากเกิดข้อผิดพลาด <br>
-                console.error("เกิดข้อผิดพลาดในการอัปเดตข้อมูล", error);  // แสดงข้อผิดพลาด <br>
-              });
-             </code></pre><br>
-             <h5>Server.js (Server-side)</h5>
-             <pre><code style="text-align: left;">
-              app.put('/items/:id', (req, res) => {  // รับคำขอ PUT พร้อม ID ที่ต้องการแก้ไข <br>
-                const id = parseInt(req.params.id);  // รับ ID จาก URL <br>
-                let item = items.find(item => item.id === id);  // ค้นหาข้อมูลที่มี ID ตรงกัน <br>
-                if (item) {  // หากพบข้อมูล <br>
-                  item.name = req.body.name;  // อัปเดตข้อมูลในรายการ <br>
-                  res.json(item);  // ส่งข้อมูลที่อัปเดตกลับไป <br>
-                } else { <br>
-                  res.status(404).json({ message: 'ไม่พบข้อมูล' });  // หากไม่พบข้อมูล <br>
-                } <br>
-              });
-             </code></pre><br>
-             <ul style="text-align: left;">
-              <li><strong>ฝั่ง Client (Vue.js):</strong> ส่งคำขอ PUT ไปยัง API โดยระบุ `id` และข้อมูลใหม่ที่ต้องการอัปเดต</li>
-              <li><strong>ฝั่ง Server (Server.js):</strong> เซิร์ฟเวอร์ตรวจสอบ `id` และทำการอัปเดตข้อมูลในรายการ `items` หากพบข้อมูลที่ตรงกัน</li>
-             </ul>
-          </div>
+          <h5>Vue.js (Client-side)</h5>
+          <pre><code style="text-align: left;">
+            fetch(this.apiUrl, {
+              method: 'POST',  // ใช้ method POST
+              headers: {
+                'Content-Type': 'application/json'  // แจ้งประเภทข้อมูลที่ส่ง
+              },
+              body: JSON.stringify({ name: this.newItem })  // ส่งข้อมูลใน body
+            }) 
+            .then(response => response.json())  // แปลงข้อมูลที่ได้เป็น JSON
+            .then(data => {
+              this.fetchData();  // เรียกข้อมูลใหม่เพื่ออัปเดตการแสดงผล
+            })
+            .catch(error => {
+              console.error("เกิดข้อผิดพลาดในการเพิ่มข้อมูล", error);
+            });
+          </code></pre>
+        </div>
 
-          <!-- delete -->
-           <div v-if="activeTab === 'delete'">
-            <h5>DELETE Request</h5>
-            <h5>ใช้สำหรับ ลบข้อมูลจากเซิร์ฟเวอร์ เช่น ลบผู้ใช้, ลบโพสต์</h5>
-            <input v-model="deleteId" placeholder="ID ที่ต้องการลบ">
-            <button style="margin: 10px;" @click="deleteItem">ลบข้อมูล</button><br>
-            
-            <div>
-              <!-- โค้ดฝั่ง Vue.js -->
-               <h5>Vue.js (Client-side)</h5>
-               <pre><code style="text-align: left;">
-                axios.delete(`${this.apiUrl}/${this.deleteId}`)  // ส่งคำขอ DELETE ไปยัง API <br>
-                .then(response => {  // เมื่อข้อมูลถูกลบสำเร็จ <br>
-                  this.fetchData();  // เรียกข้อมูลใหม่เพื่ออัปเดตการแสดงผล <br>
-                }) <br>
-                .catch(error => {  // หากเกิดข้อผิดพลาด <br>
-                  console.error("เกิดข้อผิดพลาดในการลบข้อมูล", error);  // แสดงข้อผิดพลาด <br>
-                });
-               </code></pre><br>
-               <!-- โค้ดฝั่ง Server.js -->
-                <h5>Server.js (Server-side)</h5>
-                <pre><code style="text-align: left;">
-                  app.delete('/items/:id', (req, res) => {  // รับคำขอ DELETE พร้อม ID ที่ต้องการลบ <br>
-                    const id = parseInt(req.params.id);  // รับ ID จาก URL <br>
-                    const index = items.findIndex(item => item.id === id);  // ค้นหาตำแหน่งของข้อมูลที่ตรงกับ ID <br>
-                    if (index !== -1) {  // หากพบข้อมูล <br>
-                      items.splice(index, 1);  // ลบข้อมูล <br>
-                      res.status(204).send();  // ส่งการตอบกลับที่ไม่มีข้อมูล <br>
-                    } else { <br>
-                      res.status(404).json({ message: 'ไม่พบข้อมูล' });  // หากไม่พบข้อมูล <br>
-                    } <br>
-                  });
-                </code></pre><br>
-                <p>คำอธิบาย</p>
-                <ul style="text-align: left;">
-                  <li><strong>ฝั่ง Client (Vue.js):</strong> ส่งคำขอ DELETE ไปยัง API เพื่อทำการลบข้อมูลที่ระบุด้วย `id`</li>
-                  <li><strong>ฝั่ง Server (Server.js):</strong> เซิร์ฟเวอร์ลบข้อมูลที่ตรงกับ `id` และส่งสถานะ 204 (No Content) กลับไป</li>
-                </ul>
-            </div>
-           </div>
+        <!-- PUT -->
+        <div v-if="activeTab === 'put'">
+          <h5>PUT Request</h5>
+          <h5>ใช้สำหรับ แก้ไขข้อมูลทั้งก้อน เช่น อัปเดตข้อมูลผู้ใช้</h5>
+          <input v-model="updateId" placeholder="ID ที่ต้องการแก้ไข">
+          <input v-model="updateValue" placeholder="ค่าใหม่">
+          <button @click="updateItem">อัปเดตข้อมูล</button>
+
+          <h5>Vue.js (Client-side)</h5>
+          <pre><code style="text-align: left;">
+            fetch(`${this.apiUrl}/${this.updateId}`, {
+              method: 'PUT',  // ใช้ method PUT
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({ name: this.updateValue })
+            })
+            .then(response => response.json())
+            .then(data => {
+              this.fetchData();
+            })
+            .catch(error => {
+              console.error("เกิดข้อผิดพลาดในการอัปเดตข้อมูล", error);
+            });
+          </code></pre>
+        </div>
+
+        <!-- DELETE -->
+        <div v-if="activeTab === 'delete'">
+          <h5>DELETE Request</h5>
+          <h5>ใช้สำหรับ ลบข้อมูลจากเซิร์ฟเวอร์</h5>
+          <input v-model="deleteId" placeholder="ID ที่ต้องการลบ">
+          <button @click="deleteItem">ลบข้อมูล</button>
+
+          <h5>Vue.js (Client-side)</h5>
+          <pre><code style="text-align: left;">
+            fetch(`${this.apiUrl}/${this.deleteId}`, {
+              method: 'DELETE'  // ใช้ method DELETE
+            })
+            .then(() => {
+              this.fetchData();  // เรียกข้อมูลใหม่หลังจากลบเสร็จ
+            })
+            .catch(error => {
+              console.error("เกิดข้อผิดพลาดในการลบข้อมูล", error);
+            });
+          </code></pre>
+        </div>
       </div>
+
       <div class="row mt-4">
-        <div class="col-6 d-flex justify-content-start"><router-link to="/Router" class="btn btn-success">ย้อนกลับ</router-link></div>
+        <div class="col-6 d-flex justify-content-start">
+          <router-link to="/Router" class="btn btn-success">ย้อนกลับ</router-link>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import axios from "axios";
+
 import '@/assets/Style.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 export default {
   data() {
     return {
-      activeTab: 'get',
+      activeTab: 'overview',
       items: [],
       newItem: '',
       updateId: '',
       updateValue: '',
       deleteId: '',
-      apiUrl: "http://localhost:3000/items"
+      apiUrl: "http://localhost:3000/items",
+      ONE: `<template>
+  <div>
+    <h2>รายชื่อผู้ใช้</h2>
+    <ul>
+      <li v-for="user in users" :key="user.id">{{ user.name }}</li>
+    </ul>
+  </div>
+</template>
+<script>
+export default {
+  data() {
+    return {
+      users: []
+    };
+  },
+  async mounted() {
+    const response = await fetch("https://jsonplaceholder.typicode.com/users");
+    this.users = await response.json();
+  }
+};
+</ script>
+
+`,
+
+TWO:`<template>
+  <div>
+    <h2>รายชื่อผู้ใช้</h2>
+    <ul>
+      <li v-for="user in users" :key="user.id">{{ user.name }}</li>
+    </ul>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      users: [] // เก็บรายชื่อผู้ใช้จาก API
+    };
+  },
+  async mounted() {
+    // ใช้ fetch() เพื่อดึงข้อมูลจาก API
+    const response = await fetch("https://jsonplaceholder.typicode.com/users");
+    this.users = await response.json(); // แปลง response เป็น JSON และเก็บลง users
+  }
+};
+</ script>
+`
     };
   },
   methods: {
     fetchData() {
-      axios.get(this.apiUrl)
-        .then(response => {
-          this.items = response.data;
-        })
-        .catch(error => {
-          console.error("เกิดข้อผิดพลาดในการดึงข้อมูล", error);
-        });
-    },
+    fetch(this.apiUrl)
+    .then(response => response.json())  // แปลง response เป็น JSON
+    .then(data => {
+      this.items = data;  // เก็บข้อมูลที่ได้รับลงใน items
+    })
+    .catch(error => {
+      console.error("เกิดข้อผิดพลาดในการดึงข้อมูล", error);
+    });
+},
     addItem() {
-  axios.post(this.apiUrl, { name: this.newItem })
-    .then(response => {  // ใช้ response
-      console.log("ข้อมูลที่เพิ่ม: ", response.data);  // ตัวอย่างการใช้ response
-      this.fetchData();
+  fetch(this.apiUrl, {
+    method: 'POST',  // กำหนดวิธีการส่งคำขอเป็น POST
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ name: this.newItem })  // ส่งข้อมูลในรูปแบบ JSON
+  })
+    .then(response => response.json())  // แปลง response เป็น JSON
+    .then(data => {
+      console.log("ข้อมูลที่เพิ่ม: ", data);
+      this.fetchData();  // เรียก fetchData เพื่ออัปเดตข้อมูล
     })
     .catch(error => {
       console.error("เกิดข้อผิดพลาดในการเพิ่มข้อมูล", error);
@@ -205,10 +283,17 @@ export default {
 },
 
 updateItem() {
-  axios.put(`${this.apiUrl}/${this.updateId}`, { name: this.updateValue })
-    .then(response => {  // ใช้ response
-      console.log("ข้อมูลที่อัปเดต: ", response.data);  // ตัวอย่างการใช้ response
-      this.fetchData();
+  fetch(`${this.apiUrl}/${this.updateId}`, {
+    method: 'PUT',  // กำหนดวิธีการส่งคำขอเป็น PUT
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ name: this.updateValue })  // ส่งข้อมูลที่ต้องการอัปเดต
+  })
+    .then(response => response.json())  // แปลง response เป็น JSON
+    .then(data => {
+      console.log("ข้อมูลที่อัปเดต: ", data);
+      this.fetchData();  // เรียก fetchData เพื่ออัปเดตข้อมูล
     })
     .catch(error => {
       console.error("เกิดข้อผิดพลาดในการอัปเดตข้อมูล", error);
@@ -216,46 +301,26 @@ updateItem() {
 },
 
 deleteItem() {
-  axios.delete(`${this.apiUrl}/${this.deleteId}`)
-    .then(response => {  // ใช้ response
-      console.log("ข้อมูลที่ลบ: ", response.data);  // ตัวอย่างการใช้ response
-      this.fetchData();
+  fetch(`${this.apiUrl}/${this.deleteId}`, {
+    method: 'DELETE'  // กำหนดวิธีการส่งคำขอเป็น DELETE
+  })
+    .then(response => response.json())  // แปลง response เป็น JSON
+    .then(data => {
+      console.log("ข้อมูลที่ลบ: ", data);
+      this.fetchData();  // เรียก fetchData เพื่ออัปเดตข้อมูล
     })
     .catch(error => {
       console.error("เกิดข้อผิดพลาดในการลบข้อมูล", error);
     });
-}
+},
+formatCode(code) {
+      return `<pre style="white-space: pre-wrap; text-align: left;">${code.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</pre>`;
+    }
 
-  },
-  mounted() {
-    this.fetchData();
   }
+  
 };
 </script>
 <style scoped>
-pre {
-  white-space: pre;
-  max-width: 100%;
-  width: auto;
-  height: auto;
-  margin: 0 auto;
-  background-color: #f4f4f4;
-  padding: 1rem;
-  border-radius: 8px;
-  overflow-x: auto;
-  overflow-y: auto;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-}
 
-code {
-  font-family: "Courier New",monospace;
-  white-space: nowrap;
-  word-break: break-word;
-  display: block;
-  margin-top: 10px;
-  margin-right: 10px;
-  margin-bottom: 10px;
-  text-align: center;
-  font-size: 1.1em;
-}
 </style>
