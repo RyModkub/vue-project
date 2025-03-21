@@ -20,14 +20,14 @@
           <pre><code>
             &lt;img v-bind:src="imageUrl" alt="Vue logo"&gt;
           </code></pre>
-          <div><img :src="imageUrl" alt="Vue logo"></div>
+          <div><img v-bind:src="imageUrl" alt="Vue logo"></div>
         </div>
 
         <div v-if="activeTab === 'model'">
           <h3>v-model</h3>
           <p>ใช้สำหรับการผูกข้อมูลกับ input fields เช่น text box, radio buttons หรือ checkboxes</p>
           <pre><code>
-            &lt;input v-model="message"&gt; <br>&lt;p&gt;ข้อความที่พิมพ์: {{ message }}&lt;/p&gt;
+            &lt;input v-model="message"&gt; <br>&lt;p&gt;ข้อความที่พิมพ์: { { message } }&lt;/p&gt;
           </code></pre>
           <div>
             <input v-model="message" placeholder="พิมพ์ข้อความ">
@@ -51,7 +51,7 @@
           <h3>v-for</h3>
           <p>ใช้สำหรับการวนลูปแสดงรายการจาก array หรือ object</p>
           <pre><code>
-            &lt;ul&gt;&lt;li v-for="item in items" :key="item"&gt;{{ item }}&lt;/li&gt;&lt;/ul&gt;
+            &lt;ul&gt;&lt;li v-for="item in items" :key="item"&gt;{ { item } }&lt;/li&gt;&lt;/ul&gt;
           </code></pre>
           <ul><li style="text-align: left;" v-for="item in items" :key="item">{{ item }}</li></ul>
           <p>รายการที่แสดง {{ items }}</p>
@@ -75,7 +75,7 @@
           <pre><code>
             &lt;input type="radio" v-model="selectedOption" value="A"&gt; ตัวเลือก A <br>
             &lt;input type="radio" v-model="selectedOption" value="B"&gt; ตัวเลือก B <br>
-            &lt;p&gt;ตัวเลือกที่เลือก: {{ selectedOption }}&lt;/p&gt;</code></pre>
+            &lt;p&gt;ตัวเลือกที่เลือก: { { selectedOption } }&lt;/p&gt;</code></pre>
           <div>
             <input type="radio" v-model="selectedOption" value="A"> ตัวเลือก A <br>
             <input type="radio" v-model="selectedOption" value="B"> ตัวเลือก B
@@ -89,7 +89,7 @@
           <pre><code>
             &lt;input type="checkbox" v-model="checkedItems" value="Apple"&gt; Apple <br>
             &lt;input type="checkbox" v-model="checkedItems" value="Banana"&gt; Banana <br>
-            &lt;p&gt;รายการที่เลือก: {{ checkedItems.join(', ') }}&lt;/p&gt;</code></pre>
+            &lt;p&gt;รายการที่เลือก: { { checkedItems.join(', ')} }&lt;/p&gt;</code></pre>
           <div>
             <input type="checkbox" v-model="checkedItems" value="Apple"> Apple <br>
             <input type="checkbox" v-model="checkedItems" value="Banana"> Banana
@@ -104,7 +104,7 @@
             &lt;select v-model="selectedFruit"&gt; <br>
             &lt;option value="Apple"&gt;Apple&lt;/option&gt;<br>
             &lt;option value="Banana"&gt;Banana&lt;/option&gt;&lt;/select&gt;<br>
-            &lt;p&gt;ผลไม้ที่เลือก: {{ selectedFruit }}&lt;/p&gt;
+            &lt;p&gt;ผลไม้ที่เลือก: { { selectedFruit } }&lt;/p&gt;
           </code></pre>
           <div>
             <select v-model="selectedFruit">

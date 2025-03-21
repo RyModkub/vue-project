@@ -5,6 +5,7 @@
 
     <!-- Tabs -->
     <div class="tabs">
+      <button @click="activeTab = 'component'" :class="{'active-tab': activeTab === 'component'}">Data</button>
       <button @click="activeTab = 'data'" :class="{'active-tab': activeTab === 'data'}">Data</button>
       <button @click="activeTab = 'props'" :class="{'active-tab': activeTab === 'props'}">Props</button>
       <button @click="activeTab = 'methods'" :class="{'active-tab': activeTab === 'methods'}">Methods</button>
@@ -14,6 +15,10 @@
 
     <!-- Tab Content -->
     <div class="tab-content">
+      <div v-if="activeTab === 'component'">
+        <h5>Component</h5>
+      </div>
+
       <div v-if="activeTab === 'data'">
         <h5>การใช้ Data</h5>
         <pre><code v-html="formatCode(dataExample)"></code></pre>
@@ -88,7 +93,7 @@ export default {
     return {
       message: "Hello Vue!",
       dataFromChild: '',
-      activeTab: 'data',
+      activeTab: 'component',
       
       // ตัวอย่างโค้ด
       dataExample: `export default {

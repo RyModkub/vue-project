@@ -64,9 +64,9 @@
     </ul>
     <h3>✅ สรุป</h3>
     <ul>
-      <li>โค้ดนี้ใช้ fetch() เพื่อโหลดข้อมูลผู้ใช้จาก API และแสดงใน <code>&lt;ul&gt;</code></li>
-      <li><code>mounted()</code> ช่วยให้ API ถูกเรียกเมื่อคอมโพเนนต์โหลดเสร็จ</li>
-      <li>ใช้โค้ดน้อย อ่านง่าย แต่ไม่มีการจัดการ error (ถ้าต้องการ error handling ต้องเพิ่ม <code>try...catch</code>)</li>
+      <li>โค้ดนี้ใช้ fetch() เพื่อโหลดข้อมูลผู้ใช้จาก API และแสดงใน &lt;ul&gt;</li>
+      <li>mounted() ช่วยให้ API ถูกเรียกเมื่อคอมโพเนนต์โหลดเสร็จ</li>
+      <li>ใช้โค้ดน้อย อ่านง่าย แต่ไม่มีการจัดการ error (ถ้าต้องการ error handling ต้องเพิ่ม try...catch)</li>
     </ul>
 
     <h3>หลักการทำงานของ API กับ Vue.js</h3>
@@ -101,6 +101,12 @@
                 console.error("เกิดข้อผิดพลาดในการดึงข้อมูล", error);  // แสดงข้อผิดพลาด <br>
               });
             </code></pre>
+            <h5>Vue.js (Server-side)</h5>
+            <pre><code style="text-align: left;"><br>
+                app.get("/items", (req, res) => {<br>
+                res.json(items);<br>
+              });
+               </code></pre>
           </div>
         </div>
 
@@ -110,24 +116,32 @@
           <h5>ใช้สำหรับ สร้างข้อมูลใหม่ เช่น เพิ่มผู้ใช้ใหม่, บันทึกฟอร์ม</h5>
           <input v-model="newItem" placeholder="เพิ่มข้อมูลใหม่">
           <button @click="addItem">เพิ่มข้อมูล</button>
-
+          
           <h5>Vue.js (Client-side)</h5>
           <pre><code style="text-align: left;">
-            fetch(this.apiUrl, {
-              method: 'POST',  // ใช้ method POST
-              headers: {
-                'Content-Type': 'application/json'  // แจ้งประเภทข้อมูลที่ส่ง
-              },
-              body: JSON.stringify({ name: this.newItem })  // ส่งข้อมูลใน body
-            }) 
-            .then(response => response.json())  // แปลงข้อมูลที่ได้เป็น JSON
-            .then(data => {
-              this.fetchData();  // เรียกข้อมูลใหม่เพื่ออัปเดตการแสดงผล
-            })
-            .catch(error => {
-              console.error("เกิดข้อผิดพลาดในการเพิ่มข้อมูล", error);
+            fetch(this.apiUrl, {<br>
+              method: 'POST',  // ใช้ method POST<br>
+              headers: {<br>
+                'Content-Type': 'application/json'  // แจ้งประเภทข้อมูลที่ส่ง<br>
+              },<br>
+              body: JSON.stringify({ name: this.newItem })  // ส่งข้อมูลใน body<br>
+            }) <br>
+            .then(response => response.json())  // แปลงข้อมูลที่ได้เป็น JSON<br>
+            .then(data => {<br>
+              this.fetchData();  // เรียกข้อมูลใหม่เพื่ออัปเดตการแสดงผล<br>
+            })<br>
+            .catch(error => {<br>
+              console.error("เกิดข้อผิดพลาดในการเพิ่มข้อมูล", error);<br>
             });
           </code></pre>
+          <h5>Vue.js (Server-side)</h5>
+          <pre><code style="text-align: left;"><br>
+            app.post("/items", (req, res) => {<br>
+          const newItem = { id: Date.now(), name: req.body.name };<br>
+          items.push(newItem);<br>
+            res.json(newItem);<br>
+            });
+             </code></pre>
         </div>
 
         <!-- PUT -->
@@ -140,21 +154,34 @@
 
           <h5>Vue.js (Client-side)</h5>
           <pre><code style="text-align: left;">
-            fetch(`${this.apiUrl}/${this.updateId}`, {
-              method: 'PUT',  // ใช้ method PUT
-              headers: {
-                'Content-Type': 'application/json'
-              },
-              body: JSON.stringify({ name: this.updateValue })
-            })
-            .then(response => response.json())
-            .then(data => {
-              this.fetchData();
-            })
-            .catch(error => {
-              console.error("เกิดข้อผิดพลาดในการอัปเดตข้อมูล", error);
+            fetch(`${this.apiUrl}/${this.updateId}`, {<br>
+              method: 'PUT',  // ใช้ method PUT<br>
+              headers: {<br>
+                'Content-Type': 'application/json'<br>
+              },<br>
+              body: JSON.stringify({ name: this.updateValue })<br>
+            })<br>
+            .then(response => response.json())<br>
+            .then(data => {<br>
+              this.fetchData();<br>
+            })<br>
+            .catch(error => {<br>
+              console.error("เกิดข้อผิดพลาดในการอัปเดตข้อมูล", error);<br>
             });
           </code></pre>
+          <h5>Vue.js (Server-side)</h5>
+          <pre><code style="text-align: left;">
+              app.put("/items/:id", (req, res) => {<br>
+                const id = parseInt(req.params.id);<br>
+                const item = items.find((i) => i.id === id);<br>
+                  if (item) {<br>
+                    item.name = req.body.name;<br>
+                      res.json(item);<br>
+                    } else {<br>
+                  res.status(404).json({ message: "Item not found" });<br>
+                 }<br>
+              });
+             </code></pre>
         </div>
 
         <!-- DELETE -->
@@ -166,16 +193,24 @@
 
           <h5>Vue.js (Client-side)</h5>
           <pre><code style="text-align: left;">
-            fetch(`${this.apiUrl}/${this.deleteId}`, {
-              method: 'DELETE'  // ใช้ method DELETE
-            })
-            .then(() => {
-              this.fetchData();  // เรียกข้อมูลใหม่หลังจากลบเสร็จ
-            })
-            .catch(error => {
-              console.error("เกิดข้อผิดพลาดในการลบข้อมูล", error);
+            fetch(`${this.apiUrl}/${this.deleteId}`, {<br>
+              method: 'DELETE'  // ใช้ method DELETE<br>
+            })<br>
+            .then(() => {<br>
+              this.fetchData();  // เรียกข้อมูลใหม่หลังจากลบเสร็จ<br>
+            })<br>
+            .catch(error => {<br>
+              console.error("เกิดข้อผิดพลาดในการลบข้อมูล", error);<br>
             });
           </code></pre>
+          <h5>Vue.js (Server-side)</h5>
+          <pre><code style="text-align: left;">
+              app.delete("/items/:id", (req, res) => {<br>
+              const id = parseInt(req.params.id);<br>
+              items = items.filter((i) => i.id !== id);<br>
+              res.json({ message: "Deleted" });<br>
+            });<br>
+             </code></pre>
         </div>
       </div>
 
@@ -202,7 +237,6 @@ export default {
       updateId: '',
       updateValue: '',
       deleteId: '',
-      apiUrl: "http://localhost:3000/items",
       ONE: `<template>
   <div>
     <h2>รายชื่อผู้ใช้</h2>
@@ -255,7 +289,7 @@ export default {
   },
   methods: {
     fetchData() {
-    fetch(this.apiUrl)
+    fetch('http://localhost:3000/items')
     .then(response => response.json())  // แปลง response เป็น JSON
     .then(data => {
       this.items = data;  // เก็บข้อมูลที่ได้รับลงใน items
@@ -265,7 +299,7 @@ export default {
     });
 },
     addItem() {
-  fetch(this.apiUrl, {
+  fetch('/http://localhost:3000/items', {
     method: 'POST',  // กำหนดวิธีการส่งคำขอเป็น POST
     headers: {
       'Content-Type': 'application/json'
@@ -283,7 +317,7 @@ export default {
 },
 
 updateItem() {
-  fetch(`${this.apiUrl}/${this.updateId}`, {
+  fetch(`http://localhost:3000/items/${this.updateId}`, {
     method: 'PUT',  // กำหนดวิธีการส่งคำขอเป็น PUT
     headers: {
       'Content-Type': 'application/json'
@@ -301,7 +335,7 @@ updateItem() {
 },
 
 deleteItem() {
-  fetch(`${this.apiUrl}/${this.deleteId}`, {
+  fetch(`http://localhost:3000/items/${this.deleteId}`, {
     method: 'DELETE'  // กำหนดวิธีการส่งคำขอเป็น DELETE
   })
     .then(response => response.json())  // แปลง response เป็น JSON
