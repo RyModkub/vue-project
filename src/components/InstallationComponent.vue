@@ -10,14 +10,14 @@
         <pre><code>vue --version</code></pre>
         <img src="@/assets/vue-check.png" alt="ตรวจสอบการติดตั้งของ Vue CIL">
         <h5>มาเริ่มสร้างโปรเจค Vue.js กันเถอะ</h5>
-        <p>ในการสร้างโปรเจค vue.js เราต้องใช้คำสั่งนี้นะครับ</p>
+        <p>ในการสร้างโปรเจค vue.js เราต้องใช้คำสั่งนี้</p>
         <pre><code>vue create my-vue-project</code></pre><br>
-        <p>ผมจะใช้เป็น my-vue-project นะครับ ส่วนท่านผู้ดูก็ใช้ชื่ออื่นตามสะดวกเลย</p>
+        <p>เราจะใช้เป็น my-vue-project ส่วนท่านผู้ดูก็ใช้ชื่ออื่นตามสะดวกเลย</p>
         <img src="@/assets/vue-create.png" alt="เริ่มสร้างโปรเจค vue.js">
-        <p>เมื่อกดสร้างทางผู้พัฒนาจะให้เลือก Version นะครับผมขอเลือกไปที่ <strong>Default ([Vue 3] babel, eslint)</strong> นะครับ</p>
+        <p>เมื่อกดสร้างให้เลือก Version ขอเลือกไปที่ <strong>Default ([Vue 3] babel, eslint)</strong></p>
         <img src="@/assets/vue-create1.png" alt="รอโปรเจคสร้าง">
         <img src="@/assets/vue-create2.png" alt="สร้างสำเร็จ">
-        <p>เมื่อสร้างโปรเจ็คสำเร็จ เราไปลุยที่ขั้นตอนต่อไปเลยครับ เข้าไปที่โฟลเดอร์โปรเจคนะครับโดยใช้คำสั่ง</p>
+        <p>เมื่อสร้างโปรเจ็คสำเร็จ เราไปที่ขั้นตอนต่อไปเลยครับ เข้าไปที่โฟลเดอร์โปรเจคโดยใช้คำสั่ง</p>
         <pre><code>cd my-vue-project</code></pre><br>
         <p>จากนั้นทำการรันโปรเจคขึ้นมาด้วยคำสั่ง</p>
         <pre><code>npm run serve</code></pre><br>
@@ -26,12 +26,12 @@
         <img src="@/assets/vue-serve.png" alt="รันโดยใช้ npm run serve"> -->
         <!-- <p>แต่ถ้าอยากใช้ npm start นะครับก็ทำได้เช่นกัน โดยเข้าไปเพิ่มสคริปต์ในตัว package.json นะครับ</p>
         <img src="@/assets/vue-start.png" alt="รันโดยใช้ npm start"> -->
-        <p>ตอนที่รัน มันจะหน้าตาประมาณนี้นะครับ เราต้องรอให้ครบ 100% เวลาเขียนโค้ดมันจะค่อย Compile ให้เราตลอดให้เราเห็นหน้าเว็บเราล่าสุดเสมอ</p>
+        <p>ตอนที่รัน หน้าตาจะประมาณ เราต้องรอให้ครบ 100% เวลาเขียนโค้ดมันจะค่อย Compile ให้เราตลอดให้เราเห็นหน้าเว็บเราล่าสุดเสมอ</p>
         <img src="@/assets/vue-serve-success.png" alt="รันโดยใช้ npm run serve ผ่าน">
         <!-- <img src="@/assets/vue-start-success.png" alt="รันโดยใช้ npm start ผ่าน"> -->
         <p>เมื่อกดรันสำเร็จเราจะเห็นลิงค์ที่นำไปสู่เว็บไซต์ของเรา <span class="token function"><u>http://localhost:8080</u></span></p>
         <img src="@/assets/first-web.png" alt="หน้าแรกของเว็บ">
-        <p>หน้าตาของเว็บไซต์เราเริ่มแรกนะครับ</p>        
+        <p>หน้าตาของเว็บไซต์เราเริ่มแรก</p>        
       </div>
       <div class="row mt-4">
         <div class="col-6 d-flex justify-content-start"><router-link to="/MyHome" class="btn btn-success">ย้อนกลับ</router-link></div>

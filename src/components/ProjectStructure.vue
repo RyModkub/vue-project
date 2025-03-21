@@ -36,8 +36,8 @@
         <ul>
           <li><strong>assets : </strong>เก็บไฟล์ที่ไม่ใช่โค้ดเช่น รูปภาพ, ไฟล์ CSS, ฟอนต์ ฯลฯ</li>
           <li><strong>components : </strong>โฟลเดอร์นี้เก็บไฟล์ Vue components ซึ่งแต่ละคอมโพเนนต์จะรับผิดชอบการแสดงผลของส่วนต่างๆ ของแอปพลิเคชัน</li>
-          <li><strong>App.vue : </strong>คอมโพเนนต์หลักของแอปพลิเคชัน ซึ่งจะเป็นคอมโพเนนต์เริ่มต้นที่แสดงใน <code>index.html</code></li>
-          <li><strong>main.js : </strong>เป็นไฟล์ที่กำหนดจุดเริ่มต้นของโปรเจกต์ Vue โดยจะทำการเชื่อมต่อ Vue instance เข้ากับ element ใน <code>index.html</code></li>
+          <li><strong>App.vue : </strong>คอมโพเนนต์หลักของแอปพลิเคชัน ซึ่งจะเป็นคอมโพเนนต์เริ่มต้นที่แสดงใน <strong style="color: orange;">index.html</strong></li>
+          <li><strong>main.js : </strong>เป็นไฟล์ที่กำหนดจุดเริ่มต้นของโปรเจกต์ Vue โดยจะทำการเชื่อมต่อ Vue instance เข้ากับ element ใน <strong style="color: orange;">index.html</strong></li>
         </ul>
         <p><strong style="color: black;">รายละเอียดย่อยในโฟลเดอร์ scr</strong></p>
         <p><strong style="color: black;">3.1 assets</strong></p>

@@ -5,6 +5,7 @@
 
     <!-- Tabs -->
     <div class="tabs">
+      <button @click="activeTab = 'component'" :class="{'active-tab': activeTab === 'component'}">Component</button>
       <button @click="activeTab = 'data'" :class="{'active-tab': activeTab === 'data'}">Data</button>
       <button @click="activeTab = 'props'" :class="{'active-tab': activeTab === 'props'}">Props</button>
       <button @click="activeTab = 'methods'" :class="{'active-tab': activeTab === 'methods'}">Methods</button>
@@ -14,6 +15,23 @@
 
     <!-- Tab Content -->
     <div class="tab-content">
+      <div v-if="activeTab === 'component'">
+        <h5>Component</h5>
+        <p>คอมโพเนนต์ (Component) ใน Vue.js คืออะไร?</p>
+        <p>คอมโพเนนต์ คือ “หน่วยย่อยของหน้าจอ (UI)” ที่สามารถนำกลับมาใช้ซ้ำได้
+          มันเปรียบเสมือน “บล็อกเลโก้” ที่ประกอบรวมกันเป็นเว็บไซต์หรือแอพขนาดใหญ่</p>
+          <p>ทำไมต้องใช้คอมโพเนนต์?</p>
+          <li>แยกส่วนการทำงานได้ชัดเจน (แบ่งหน้าจอออกเป็นหลายส่วน เช่น หัวเว็บ ปุ่ม การ์ด)</li>
+          <li>ทำให้โค้ดอ่านง่ายและจัดการง่าย</li>
+          <li>นำกลับมาใช้ซ้ำได้ เช่น ปุ่มที่ใช้ซ้ำหลายหน้า</li>
+          <li>แยก logic ออกเป็นโมดูล ง่ายต่อการ debug และพัฒนาแบบทีม</li>
+          <p>ตัวอย่างโครงสร้างของคอมโพเนนต์ (.vue file)</p>
+          <p>ไฟล์ .vue หนึ่งไฟล์ = 1 คอมโพเนนต์ มี 3 ส่วนหลัก:</p>
+          <h2></h2>
+
+
+      </div>
+
       <div v-if="activeTab === 'data'">
         <h5>การใช้ Data</h5>
         <pre><code v-html="formatCode(dataExample)"></code></pre>
@@ -88,7 +106,7 @@ export default {
     return {
       message: "Hello Vue!",
       dataFromChild: '',
-      activeTab: 'data',
+      activeTab: 'component',
       
       // ตัวอย่างโค้ด
       dataExample: `export default {
