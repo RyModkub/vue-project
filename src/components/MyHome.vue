@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-8 mx-auto text-left">
-        <h2>Vue.js เบื้องต้นอ่านแล้วได้เกรด A แน่นอน!!!</h2><hr>
+        <h2>Vue.js เบื้องต้น</h2><hr>
         <img src="@/assets/vue1.png" alt="Vue.js Logo">
         <h4>Vue.js คืออะไร</h4>
         <p class="text-indent"><span> Vue.js เป็น framework JavaScript ที่ใช้สำหรับสร้าง UI และ Single Page Applications (SPA) โดยเน้นการทำงานที่ง่ายและยืดหยุ่นและได้รับความนิยมจากนักพัฒนาเว็บมากขึ้นเรื่อยๆ</span>

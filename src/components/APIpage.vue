@@ -13,7 +13,7 @@
 
         <!-- get -->
         <div v-if="activeTab === 'overview'">
-            <div class="container">
+            <div class="container text-left">
     <h2>ทฤษฎีเกี่ยวกับ API ใน Vue.js</h2>
     <p>
       API (Application Programming Interface) คือ ชุดคำสั่งที่ช่วยให้ระบบต่าง ๆ
@@ -21,40 +21,40 @@
       หรือแหล่งข้อมูลอื่น ๆ มาแสดงผลบน UI
     </p>
 
-    <h3>API ใน Vue.js ทำงานอย่างไร?</h3>
+    <h5>API ใน Vue.js ทำงานอย่างไร?</h5>
     <ul>
       <li>Vue Component ทำการร้องขอข้อมูล (Request) ไปยัง API</li>
       <li>API ประมวลผลคำขอ และส่งข้อมูลกลับมา (Response)</li>
       <li>Vue Component รับข้อมูล และอัปเดต UI ให้แสดงผลข้อมูลนั้น</li>
     </ul>
 
-    <h3>วิธีเรียก API ใน Vue.js โดยใช้ fetch()</h3>
+    <h5>วิธีเรียก API ใน Vue.js โดยใช้ fetch()</h5>
     <p>
       fetch() เป็น built-in JavaScript API ที่ใช้สำหรับการดึงข้อมูลจากเซิร์ฟเวอร์ โดยไม่ต้องติดตั้งไลบรารีเพิ่ม
       สามารถใช้ใน Vue.js ได้ง่าย ๆ ใน Options API
     </p>
 
-    <h4>✅ ข้อดีของ fetch()</h4>
+    <h5>✅ ข้อดีของ fetch()</h5>
     <ul>
       <li>ไม่มี dependency เพิ่มเติม (Built-in)</li>
       <li>ใช้งานได้กับ JavaScript และ Vue ทุกเวอร์ชัน</li>
     </ul>
 
-    <h4>❌ ข้อเสียของ fetch()</h4>
+    <h5>❌ ข้อเสียของ fetch()</h5>
     <ul>
       <li>ใช้ .then() เยอะ ทำให้โค้ดยุ่งเหยิง</li>
       <li>ต้องแปลงข้อมูล JSON เอง</li>
       <li>ไม่มีการจัดการ error ในตัว ต้องเขียนเอง</li>
     </ul>
 
-    <h3>ตัวอย่าง fetch() ใน Vue 3 (Options API)</h3>
+    <h5>ตัวอย่าง fetch() ใน Vue 3 (Options API)</h5><br>
 
-    <pre><code v-html="formatCode(ONE)"></code></pre>
+    <pre><code v-html="formatCode(ONE)"></code></pre><br>
     <ul>
     <li>✅ โหลด API เมื่อคอมโพเนนต์ถูก mount (mounted())</li>
     <li>✅ ใช้ fetch() ดึงข้อมูล JSON และแสดงผลทันที </li>
-    </ul>
-    <pre><code v-html="formatCode(TWO)"></code></pre>
+    </ul><br>
+    <pre><code v-html="formatCode(TWO)"></code></pre><br>
     <ul>
     <li>✅ ใช้ v-for → วนลูปแสดงรายชื่อผู้ใช้ที่ได้จาก API</li>
     <li>✅ ใช้ :key="user.id" → ป้องกัน Vue แจ้งเตือนเกี่ยวกับคีย์ที่ซ้ำ</li>
@@ -64,12 +64,12 @@
     </ul>
     <h3>✅ สรุป</h3>
     <ul>
-      <li>โค้ดนี้ใช้ fetch() เพื่อโหลดข้อมูลผู้ใช้จาก API และแสดงใน <code>&lt;ul&gt;</code></li>
-      <li><code>mounted()</code> ช่วยให้ API ถูกเรียกเมื่อคอมโพเนนต์โหลดเสร็จ</li>
-      <li>ใช้โค้ดน้อย อ่านง่าย แต่ไม่มีการจัดการ error (ถ้าต้องการ error handling ต้องเพิ่ม <code>try...catch</code>)</li>
+      <li>โค้ดนี้ใช้ fetch() เพื่อโหลดข้อมูลผู้ใช้จาก API และแสดงใน <strong style="color: orange;">&lt;ul&gt;</strong></li>
+      <li><strong style="color: orange;">mounted()</strong> ช่วยให้ API ถูกเรียกเมื่อคอมโพเนนต์โหลดเสร็จ</li>
+      <li>ใช้โค้ดน้อย อ่านง่าย แต่ไม่มีการจัดการ error (ถ้าต้องการ error handling ต้องเพิ่ม <strong style="color: orange;">try...catch</strong> )</li>
     </ul>
 
-    <h3>หลักการทำงานของ API กับ Vue.js</h3>
+    <h5>หลักการทำงานของ API กับ Vue.js</h5>
     <p>API มีหลายรูปแบบ ซึ่ง Vue.js สามารถใช้ได้ เช่น:</p>
     <ul>
       <li><b>GET:</b> ใช้สำหรับ ขอข้อมูล จาก API โดยไม่มีการเปลี่ยนแปลงข้อมูล</li>
@@ -109,24 +109,24 @@
           <h5>POST Request</h5>
           <h5>ใช้สำหรับ สร้างข้อมูลใหม่ เช่น เพิ่มผู้ใช้ใหม่, บันทึกฟอร์ม</h5>
           <input v-model="newItem" placeholder="เพิ่มข้อมูลใหม่">
-          <button @click="addItem">เพิ่มข้อมูล</button>
+          <button style="margin: 10px;" @click="addItem">เพิ่มข้อมูล</button>
 
           <h5>Vue.js (Client-side)</h5>
           <pre><code style="text-align: left;">
-            fetch(this.apiUrl, {
-              method: 'POST',  // ใช้ method POST
-              headers: {
-                'Content-Type': 'application/json'  // แจ้งประเภทข้อมูลที่ส่ง
-              },
-              body: JSON.stringify({ name: this.newItem })  // ส่งข้อมูลใน body
-            }) 
-            .then(response => response.json())  // แปลงข้อมูลที่ได้เป็น JSON
-            .then(data => {
-              this.fetchData();  // เรียกข้อมูลใหม่เพื่ออัปเดตการแสดงผล
-            })
-            .catch(error => {
-              console.error("เกิดข้อผิดพลาดในการเพิ่มข้อมูล", error);
-            });
+            fetch(this.apiUrl, { <br>
+              method: 'POST',  // ใช้ method POST <br>
+              headers: { <br>
+                'Content-Type': 'application/json'  // แจ้งประเภทข้อมูลที่ส่ง <br>
+              }, <br>
+              body: JSON.stringify({ name: this.newItem })  // ส่งข้อมูลใน body <br>
+            }) <br>
+            .then(response => response.json())  // แปลงข้อมูลที่ได้เป็น JSON <br>
+            .then(data => { <br>
+              this.fetchData();  // เรียกข้อมูลใหม่เพื่ออัปเดตการแสดงผล <br>
+            }) <br>
+            .catch(error => { <br>
+              console.error("เกิดข้อผิดพลาดในการเพิ่มข้อมูล", error); <br>
+            }); 
           </code></pre>
         </div>
 
@@ -134,25 +134,27 @@
         <div v-if="activeTab === 'put'">
           <h5>PUT Request</h5>
           <h5>ใช้สำหรับ แก้ไขข้อมูลทั้งก้อน เช่น อัปเดตข้อมูลผู้ใช้</h5>
-          <input v-model="updateId" placeholder="ID ที่ต้องการแก้ไข">
-          <input v-model="updateValue" placeholder="ค่าใหม่">
-          <button @click="updateItem">อัปเดตข้อมูล</button>
+          <div>
+            <input style="margin: 10px;" v-model="updateId" placeholder="ID ที่ต้องการแก้ไข">
+            <input style="margin: 10px;" v-model="updateValue" placeholder="ค่าใหม่">
+            <button @click="updateItem">อัปเดตข้อมูล</button>
+          </div>
 
           <h5>Vue.js (Client-side)</h5>
           <pre><code style="text-align: left;">
-            fetch(`${this.apiUrl}/${this.updateId}`, {
-              method: 'PUT',  // ใช้ method PUT
-              headers: {
-                'Content-Type': 'application/json'
-              },
-              body: JSON.stringify({ name: this.updateValue })
-            })
-            .then(response => response.json())
-            .then(data => {
-              this.fetchData();
-            })
-            .catch(error => {
-              console.error("เกิดข้อผิดพลาดในการอัปเดตข้อมูล", error);
+            fetch(`${this.apiUrl}/${this.updateId}`, { <br>
+              method: 'PUT',  // ใช้ method PUT <br>
+              headers: { <br>
+                'Content-Type': 'application/json' <br>
+              }, <br>
+              body: JSON.stringify({ name: this.updateValue }) <br>
+            }) <br>
+            .then(response => response.json()) <br>
+            .then(data => { <br>
+              this.fetchData(); <br>
+            }) <br>
+            .catch(error => { <br>
+              console.error("เกิดข้อผิดพลาดในการอัปเดตข้อมูล", error); <br>
             });
           </code></pre>
         </div>
@@ -161,20 +163,20 @@
         <div v-if="activeTab === 'delete'">
           <h5>DELETE Request</h5>
           <h5>ใช้สำหรับ ลบข้อมูลจากเซิร์ฟเวอร์</h5>
-          <input v-model="deleteId" placeholder="ID ที่ต้องการลบ">
+          <input style="margin: 10px;" v-model="deleteId" placeholder="ID ที่ต้องการลบ">
           <button @click="deleteItem">ลบข้อมูล</button>
 
           <h5>Vue.js (Client-side)</h5>
           <pre><code style="text-align: left;">
-            fetch(`${this.apiUrl}/${this.deleteId}`, {
-              method: 'DELETE'  // ใช้ method DELETE
-            })
-            .then(() => {
-              this.fetchData();  // เรียกข้อมูลใหม่หลังจากลบเสร็จ
-            })
-            .catch(error => {
-              console.error("เกิดข้อผิดพลาดในการลบข้อมูล", error);
-            });
+            fetch(`${this.apiUrl}/${this.deleteId}`, { <br>
+              method: 'DELETE'  // ใช้ method DELETE <br>
+            }) <br>
+            .then(() => { <br>
+              this.fetchData();  // เรียกข้อมูลใหม่หลังจากลบเสร็จ <br>
+            }) <br>
+            .catch(error => { <br>
+              console.error("เกิดข้อผิดพลาดในการลบข้อมูล", error); <br>
+            }); 
           </code></pre>
         </div>
       </div>
