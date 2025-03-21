@@ -26,12 +26,13 @@
               <li>นำกลับมาใช้ซ้ำได้ เช่น ปุ่มที่ใช้ซ้ำหลายหน้า</li>
               <li>แยก logic ออกเป็นโมดูล ง่ายต่อการ debug และพัฒนาแบบทีม</li>
               <p>ตัวอย่างโครงสร้างของคอมโพเนนต์ (.vue file)</p>
+              <pre><code v-html="formatCode(componentExample)"></code></pre><br>
               <p>ไฟล์ .vue หนึ่งไฟล์ = 1 คอมโพเนนต์ มี 3 ส่วนหลัก:</p>
             </ul>
           </div>
           <div v-if="activeTab === 'data'">
             <h5>การใช้ Data</h5>
-            <pre><code v-html="formatCode(dataExample)"></code></pre><br>
+            <pre><code v-html="formatCode(propsExample)"></code></pre><br>
             <h5>โค้ดของแสดงผล Data</h5>
             <pre><code v-html="formatCode(Datacode)"></code></pre><br>
             <p>ผลลัพธ์: {{ message }}</p>
@@ -139,7 +140,20 @@ export default {
       message: "Hello Vue!",
       dataFromChild: '',
       activeTab: 'component',
-      
+      // 
+      componentExample: `<template>   <-- ส่วนที่เขียน HTML -->
+        <div>Hello Vue</div>
+        </template>
+
+        <script> !-- ส่วนที่เขียน logic เช่น data, methods -->
+        export default {
+          name: 'MyComponent',
+        }
+        </ script>
+        
+        <style scoped>  <!-- ส่วน CSS ที่ใช้เฉพาะในคอมโพเนนต์นี้ -->
+        div { color: red; }
+        </style>`,
       // ตัวอย่างโค้ด
       dataExample: `export default {
   data() {
