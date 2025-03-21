@@ -5,7 +5,7 @@
 
     <!-- Tabs -->
     <div class="tabs">
-      <button @click="activeTab = 'component'" :class="{'active-tab': activeTab === 'component'}">Data</button>
+      <button @click="activeTab = 'component'" :class="{'active-tab': activeTab === 'component'}">Component</button>
       <button @click="activeTab = 'data'" :class="{'active-tab': activeTab === 'data'}">Data</button>
       <button @click="activeTab = 'props'" :class="{'active-tab': activeTab === 'props'}">Props</button>
       <button @click="activeTab = 'methods'" :class="{'active-tab': activeTab === 'methods'}">Methods</button>
