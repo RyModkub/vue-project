@@ -2,22 +2,22 @@
   <div class="container">
     <div class="row">
       <div class="col-md-8 mx-auto text-left">
-        <h2>มาเริ่มต้นใช้งาน Vue.js กันเถอะ</h2>
-        <h5>เริ่มจากติดตั้ง Vue CLI</h5>
-        <p>มาเริ่มกันเลยที่การติดตั้ง Vue CLI หรือจะเรียก Vue.js ก็ได้นะ เริ่มจากเปิด Command Prompt(cmd) แล้วพิมพ์คำสั่ง</p>
+        <h2>วิธีเริ่มต้นใช้งาน Vue.js </h2>
+        <h5>เริ่มจากการติดตั้ง Vue CLI</h5>
+        <p>วิธีการที่ติดตั้ง Vue CLI หรือจะเรียก Vue.js  เริ่มจากเปิด Command Prompt(cmd) แล้วพิมพ์คำสั่ง</p>
         <pre><code><span class="token function">npm</span> <span class="token function">install</span> -g @vue/cil</code></pre><br>
-        <p>เมื่อทำการติดตั้งสำเร็จ ให้ตรวจสอบว่า Vue พร้อมใช้งานหรือไม่</p>
+        <p>เมื่อทำการติดตั้งสำเร็จ ให้ตรวจสอบว่า Vue พร้อมใช้งานหรือไม่โดยพิมพ์คำสั่ง</p>
         <pre><code>vue --version</code></pre>
         <img src="@/assets/vue-check.png" alt="ตรวจสอบการติดตั้งของ Vue CIL">
-        <h5>มาเริ่มสร้างโปรเจค Vue.js กันเถอะ</h5>
-        <p>ในการสร้างโปรเจค vue.js เราต้องใช้คำสั่งนี้</p>
+        <h5>วิธีสร้างโปรเจค Vue.js</h5>
+        <p>ในการสร้างโปรเจค vue.js เราต้องใช้คำสั่ง </p>
         <pre><code>vue create my-vue-project</code></pre><br>
-        <p>เราจะใช้เป็น my-vue-project ส่วนท่านผู้ดูก็ใช้ชื่ออื่นตามสะดวกเลย</p>
+        <p>ผมจะใช้เป็น my-vue-project ส่วนท่านก็ใช้ชื่อโปรเจคตามที่ท่านต้องการได้เลย</p>
         <img src="@/assets/vue-create.png" alt="เริ่มสร้างโปรเจค vue.js">
         <p>เมื่อกดสร้างให้เลือก Version ขอเลือกไปที่ <strong>Default ([Vue 3] babel, eslint)</strong></p>
         <img src="@/assets/vue-create1.png" alt="รอโปรเจคสร้าง">
         <img src="@/assets/vue-create2.png" alt="สร้างสำเร็จ">
-        <p>เมื่อสร้างโปรเจ็คสำเร็จ เราไปที่ขั้นตอนต่อไปเลยครับ เข้าไปที่โฟลเดอร์โปรเจคโดยใช้คำสั่ง</p>
+        <p>เมื่อสร้างโปรเจ็คสำเร็จ ขั้นตอนต่อไป เข้าไปที่โฟลเดอร์โปรเจคโดยใช้คำสั่ง</p>
         <pre><code>cd my-vue-project</code></pre><br>
         <p>จากนั้นทำการรันโปรเจคขึ้นมาด้วยคำสั่ง</p>
         <pre><code>npm run serve</code></pre><br>
