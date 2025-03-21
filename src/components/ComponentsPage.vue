@@ -47,7 +47,7 @@
           
           <div v-if="activeTab === 'props'">
             <h5>การใช้ Props</h5>
-            <pre><code v-html="formatCode(dataExample)"></code></pre><br>
+            <pre><code v-html="formatCode(propsExample)"></code></pre><br>
             <h5>โค้ดของ GreetingComponent.vue</h5>
             <pre><code v-html="formatCode(greetingComponentCode)"></code></pre><br>
             <Greeting :name="'Vue User'"/>
