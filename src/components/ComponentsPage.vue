@@ -32,7 +32,7 @@
           </div>
           <div v-if="activeTab === 'data'">
             <h5>การใช้ Data</h5>
-            <pre><code v-html="formatCode(propsExample)"></code></pre><br>
+            <pre><code v-html="formatCode(dataExample)"></code></pre><br>
             <h5>โค้ดของแสดงผล Data</h5>
             <pre><code v-html="formatCode(Datacode)"></code></pre><br>
             <p>ผลลัพธ์: {{ message }}</p>
