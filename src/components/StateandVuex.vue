@@ -4,7 +4,7 @@
       <div class="col-8 mx-auto text-left">
         <h2>การอธิบาย State และ Vuex</h2>
         <h5>State คืออะไร?</h5>
-        <p>ใน Vue.js, <strong>State</strong> หมายถึงข้อมูลของคอมโพเนนต์ที่สามารถเปลี่ยนแปลงได้และส่งผลกระทบต่อ UI.</p>
+        <p>ใน Vue.js, <strong>State</strong> หมายถึงข้อมูลของคอมโพเนนต์ที่สามารถเปลี่ยนแปลงได้และส่งผลกระทบต่อ UI สามารถแชร์ข้อมูลระหว่างหลาย component ได้ </p>
         <h5>ลักษณะของ State ใน Vue.js:</h5>
         <li>เก็บข้อมูลของคอมโพเนนต์ (Component-Level State)</li>
         <li>เปลี่ยนค่าแล้ว Vue จะ Re-render UI อัตโนมัติ</li>
@@ -66,21 +66,22 @@
           <h5>จำนวน : {{ count }}</h5>
           <button @click="increment">เพิ่ม</button>
           <button @click="decrement">ลด</button>
-        </div>
-      </div>
+        </div>      
       <div class="row mt-4">
         <div class="col-6 d-flex justify-content-start"><router-link to="/ComponentsPage" class="btn btn-success">ย้อนกลับ</router-link></div>
         <div class="col-6 d-flex justify-content-end"><router-link to="/Router" class="btn btn-success">ต่อไป</router-link></div>
       </div>
     </div>
   </div>
+  </div>
 </template>
 <script>
     import '@/assets/Style.css';
     import 'bootstrap/dist/css/bootstrap.min.css';
     import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-    import { computed } from 'vue';
-    import { useStore } from 'vuex';
+    import {computed } from 'vue';
+    import {useStore } from 'vuex';
+
     
 
     export default {
@@ -94,7 +95,7 @@
 
         return { count, increment, decrement };
       }
-    };
+    }
     </script>
 <style scoped>
 div {
