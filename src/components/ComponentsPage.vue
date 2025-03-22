@@ -122,6 +122,9 @@
 </template>
 
 <script>
+import '@/assets/Style.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import Greeting from './GreetingComponent.vue'
 import Counter from './CounterComponent.vue'
 import FullName from './FullName.vue'
@@ -313,47 +316,5 @@ export default {
 </script>
 
 <style scoped>
-div {
-  text-align: center;
-  margin-top: 20px;
-}
-pre {
-  white-space: pre;
-  max-width: 100%;
-  width: 80%;
-  height: auto;
-  margin: 0 auto;
-  background-color: #f4f4f4;
-  padding: 1rem;
-  border-radius: 8px;
-  overflow-x: auto;
-  overflow-y: auto;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-}
-code {
-  font-family: "Courier New",monospace;
-  white-space: nowrap;
-  word-break: break-word;
-  display: block;
-  margin-top: 10px;
-  margin-left: 3rem;
-  margin-bottom: 10px;
-  text-align: center;
-  font-size: 1.1em;
-}
-button {
-  margin-top: 10px;
-  padding: 8px 16px;
-  font-size: 16px;
-}
-/* เพิ่มสไตล์สำหรับปุ่ม */
-.btn{
-    padding: 10px 20px;
-    background-color: #4CAF50;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-    font-size: 1rem;
-}
+
 </style>

@@ -216,11 +216,11 @@
         </div>
       </div>
 
-      <div class="row mt-4">
-        <div class="col-6 d-flex justify-content-start">
-          <router-link to="/Router" class="btn btn-success">ย้อนกลับ</router-link>
+      <div class="row mt-4">      
+          <div class="col-6 d-flex justify-content-start"><router-link to="/Router" class="btn btn-success">ย้อนกลับ</router-link></div>
+        <div class="col-6 d-flex justify-content-end"><router-link to="/GroupName" class="btn btn-success">ต่อไป</router-link></div>
         </div>
-      </div>
+     
     </div>
   </div>
 </template>

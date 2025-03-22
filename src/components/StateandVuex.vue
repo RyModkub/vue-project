@@ -67,11 +67,12 @@
           <button @click="increment">เพิ่ม</button>
           <button @click="decrement">ลด</button>
         </div>      
-      <div class="row mt-4">
+      
+    </div>
+    <div class="row mt-4">
         <div class="col-6 d-flex justify-content-start"><router-link to="/ComponentsPage" class="btn btn-success">ย้อนกลับ</router-link></div>
         <div class="col-6 d-flex justify-content-end"><router-link to="/Router" class="btn btn-success">ต่อไป</router-link></div>
       </div>
-    </div>
   </div>
   </div>
 </template>
