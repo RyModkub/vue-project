@@ -10,6 +10,7 @@ import APIpage from './components/APIpage.vue';
 import StateandVuex from './components/StateandVuex.vue';
 import ProjectStructure from './components/ProjectStructure.vue';
 import InstallationComponent from './components/InstallationComponent.vue';
+import GroupName from './components/GroupName.vue';
 import store from './store'; 
 const routes = [
   { path: '/', component: MyHome },
@@ -22,6 +23,7 @@ const routes = [
   { path: '/Router', component: Router },
   { path: '/APIpage', component: APIpage },
   { path: '/StateandVuex', component: StateandVuex },
+  { path: '/GroupName', component: GroupName },
 ];
 
 

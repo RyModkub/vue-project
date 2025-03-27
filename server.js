@@ -1,45 +1,54 @@
-const express = require("express");
-const cors = require("cors");
-const bodyParser = require("body-parser");
-
+const express = require('express');
+const cors = require('cors');
 const app = express();
-app.use(cors());
-app.use(bodyParser.json());
+const port = 3000;
 
+// ใช้งาน cors เพื่อให้สามารถเชื่อมต่อจาก Vue.js ได้
+app.use(cors());
+app.use(express.json());  // รองรับการรับข้อมูลในรูปแบบ JSON
+
+// ข้อมูลตัวอย่าง (ในการทำงานจริงสามารถใช้ฐานข้อมูลได้)
 let items = [
-  { id: 1, name: "Item 1" },
-  { id: 2, name: "Item 2" },
+  { id: 1, name: 'Item 1' },
+  { id: 2, name: 'Item 2' },
+  { id: 3, name: 'Item 3' }
 ];
 
-// GET
-app.get("/items", (req, res) => {
+// ดึงข้อมูลทั้งหมด (GET)
+app.get('/items', (req, res) => {
   res.json(items);
 });
 
-// POST
-app.post("/items", (req, res) => {
-  const newItem = { id: Date.now(), name: req.body.name };
+// เพิ่มข้อมูล (POST)
+app.post('/items', (req, res) => {
+  const newItem = {
+    id: items.length + 1,
+    name: req.body.name
+  };
   items.push(newItem);
-  res.json(newItem);
+  res.json(newItem);  // ส่งกลับข้อมูลที่เพิ่มเข้าไป
 });
 
-// PUT
-app.put("/items/:id", (req, res) => {
-  const id = parseInt(req.params.id);
-  const item = items.find((i) => i.id === id);
-  if (item) {
-    item.name = req.body.name;
-    res.json(item);
+// อัปเดตข้อมูล (PUT)
+app.put('/items/:id', (req, res) => {
+  const itemId = parseInt(req.params.id);
+  const updatedItem = items.find(item => item.id === itemId);
+  if (updatedItem) {
+    updatedItem.name = req.body.name;
+    res.json(updatedItem);
   } else {
-    res.status(404).json({ message: "Item not found" });
+    res.status(404).send('Item not found');
   }
 });
 
-// DELETE
-app.delete("/items/:id", (req, res) => {
-  const id = parseInt(req.params.id);
-  items = items.filter((i) => i.id !== id);
-  res.json({ message: "Deleted" });
+// ลบข้อมูล (DELETE)
+app.delete('/items/:id', (req, res) => {
+  const itemId = parseInt(req.params.id);
+  items = items.filter(item => item.id !== itemId);
+  res.json({ message: 'Item deleted' });
 });
 
-app.listen(3000, () => console.log("Server running on port 3000"));
+// เริ่มต้น server
+app.listen(port, () => {
+  console.log(`Server is running on http://localhost:${port}`);
+});

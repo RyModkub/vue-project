@@ -26,6 +26,7 @@
               <li>นำกลับมาใช้ซ้ำได้ เช่น ปุ่มที่ใช้ซ้ำหลายหน้า</li>
               <li>แยก logic ออกเป็นโมดูล ง่ายต่อการ debug และพัฒนาแบบทีม</li>
               <p>ตัวอย่างโครงสร้างของคอมโพเนนต์ (.vue file)</p>
+              <pre><code v-html="formatCode(componentExample)"></code></pre><br>
               <p>ไฟล์ .vue หนึ่งไฟล์ = 1 คอมโพเนนต์ มี 3 ส่วนหลัก:</p>
             </ul>
           </div>
@@ -121,6 +122,9 @@
 </template>
 
 <script>
+import '@/assets/Style.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import Greeting from './GreetingComponent.vue'
 import Counter from './CounterComponent.vue'
 import FullName from './FullName.vue'
@@ -139,7 +143,20 @@ export default {
       message: "Hello Vue!",
       dataFromChild: '',
       activeTab: 'component',
-      
+      // 
+      componentExample: `<template>   <-- ส่วนที่เขียน HTML -->
+        <div>Hello Vue</div>
+        </template>
+
+        <script> !-- ส่วนที่เขียน logic เช่น data, methods -->
+        export default {
+          name: 'MyComponent',
+        }
+        </ script>
+        
+        <style scoped>  <!-- ส่วน CSS ที่ใช้เฉพาะในคอมโพเนนต์นี้ -->
+        div { color: red; }
+        </style>`,
       // ตัวอย่างโค้ด
       dataExample: `export default {
   data() {
@@ -299,47 +316,5 @@ export default {
 </script>
 
 <style scoped>
-div {
-  text-align: center;
-  margin-top: 20px;
-}
-pre {
-  white-space: pre;
-  max-width: 100%;
-  width: 80%;
-  height: auto;
-  margin: 0 auto;
-  background-color: #f4f4f4;
-  padding: 1rem;
-  border-radius: 8px;
-  overflow-x: auto;
-  overflow-y: auto;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-}
-code {
-  font-family: "Courier New",monospace;
-  white-space: nowrap;
-  word-break: break-word;
-  display: block;
-  margin-top: 10px;
-  margin-left: 3rem;
-  margin-bottom: 10px;
-  text-align: center;
-  font-size: 1.1em;
-}
-button {
-  margin-top: 10px;
-  padding: 8px 16px;
-  font-size: 16px;
-}
-/* เพิ่มสไตล์สำหรับปุ่ม */
-.btn{
-    padding: 10px 20px;
-    background-color: #4CAF50;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-    font-size: 1rem;
-}
+
 </style>

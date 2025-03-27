@@ -216,11 +216,11 @@
         </div>
       </div>
 
-      <div class="row mt-4">
-        <div class="col-6 d-flex justify-content-start">
-          <router-link to="/Router" class="btn btn-success">ย้อนกลับ</router-link>
+      <div class="row mt-4">      
+          <div class="col-6 d-flex justify-content-start"><router-link to="/Router" class="btn btn-success">ย้อนกลับ</router-link></div>
+        <div class="col-6 d-flex justify-content-end"><router-link to="/GroupName" class="btn btn-success">ต่อไป</router-link></div>
         </div>
-      </div>
+      
     </div>
   </div>
 </template>
@@ -290,65 +290,66 @@ export default {
     };
   },
   methods: {
-    fetchData() {
+  fetchData() {
     fetch('http://localhost:3000/items')
-    .then(response => response.json())  // แปลง response เป็น JSON
-    .then(data => {
-      this.items = data;  // เก็บข้อมูลที่ได้รับลงใน items
-    })
-    .catch(error => {
-      console.error("เกิดข้อผิดพลาดในการดึงข้อมูล", error);
-    });
-},
-    addItem() {
-  fetch('/http://localhost:3000/items', {
-    method: 'POST',  // กำหนดวิธีการส่งคำขอเป็น POST
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ name: this.newItem })  // ส่งข้อมูลในรูปแบบ JSON
-  })
-    .then(response => response.json())  // แปลง response เป็น JSON
-    .then(data => {
-      console.log("ข้อมูลที่เพิ่ม: ", data);
-      this.fetchData();  // เรียก fetchData เพื่ออัปเดตข้อมูล
-    })
-    .catch(error => {
-      console.error("เกิดข้อผิดพลาดในการเพิ่มข้อมูล", error);
-    });
-},
+      .then(response => response.json())  // แปลง response เป็น JSON
+      .then(data => {
+        this.items = data;  // เก็บข้อมูลที่ได้รับลงใน items
+      })
+      .catch(error => {
+        console.error("เกิดข้อผิดพลาดในการดึงข้อมูล", error);
+      });
+  },
 
-updateItem() {
-  fetch(`http://localhost:3000/items/${this.updateId}`, {
-    method: 'PUT',  // กำหนดวิธีการส่งคำขอเป็น PUT
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ name: this.updateValue })  // ส่งข้อมูลที่ต้องการอัปเดต
-  })
-    .then(response => response.json())  // แปลง response เป็น JSON
-    .then(data => {
-      console.log("ข้อมูลที่อัปเดต: ", data);
-      this.fetchData();  // เรียก fetchData เพื่ออัปเดตข้อมูล
+  addItem() {
+    fetch('http://localhost:3000/items', {  // ลบ / ออกไป
+      method: 'POST',  // กำหนดวิธีการส่งคำขอเป็น POST
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ name: this.newItem })  // ส่งข้อมูลในรูปแบบ JSON
     })
-    .catch(error => {
-      console.error("เกิดข้อผิดพลาดในการอัปเดตข้อมูล", error);
-    });
-},
+      .then(response => response.json())  // แปลง response เป็น JSON
+      .then(data => {
+        console.log("ข้อมูลที่เพิ่ม: ", data);
+        this.fetchData();  // เรียก fetchData เพื่ออัปเดตข้อมูล
+      })
+      .catch(error => {
+        console.error("เกิดข้อผิดพลาดในการเพิ่มข้อมูล", error);
+      });
+  },
 
-deleteItem() {
-  fetch(`http://localhost:3000/items/${this.deleteId}`, {
-    method: 'DELETE'  // กำหนดวิธีการส่งคำขอเป็น DELETE
-  })
-    .then(response => response.json())  // แปลง response เป็น JSON
-    .then(data => {
-      console.log("ข้อมูลที่ลบ: ", data);
-      this.fetchData();  // เรียก fetchData เพื่ออัปเดตข้อมูล
+  updateItem() {
+    fetch(`http://localhost:3000/items/${this.updateId}`, {
+      method: 'PUT',  // กำหนดวิธีการส่งคำขอเป็น PUT
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ name: this.updateValue })  // ส่งข้อมูลที่ต้องการอัปเดต
     })
-    .catch(error => {
-      console.error("เกิดข้อผิดพลาดในการลบข้อมูล", error);
-    });
-},
+      .then(response => response.json())  // แปลง response เป็น JSON
+      .then(data => {
+        console.log("ข้อมูลที่อัปเดต: ", data);
+        this.fetchData();  // เรียก fetchData เพื่ออัปเดตข้อมูล
+      })
+      .catch(error => {
+        console.error("เกิดข้อผิดพลาดในการอัปเดตข้อมูล", error);
+      });
+  },
+
+  deleteItem() {
+    fetch(`http://localhost:3000/items/${this.deleteId}`, {
+      method: 'DELETE'  // กำหนดวิธีการส่งคำขอเป็น DELETE
+    })
+      .then(response => response.json())  // แปลง response เป็น JSON
+      .then(data => {
+        console.log("ข้อมูลที่ลบ: ", data);
+        this.fetchData();  // เรียก fetchData เพื่ออัปเดตข้อมูล
+      })
+      .catch(error => {
+        console.error("เกิดข้อผิดพลาดในการลบข้อมูล", error);
+      });
+  },
 formatCode(code) {
       return `<pre style="white-space: pre-wrap; text-align: left;">${code.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</pre>`;
     }

@@ -1,9 +1,9 @@
 <template>
   <div class="container">
     <div class="row">
-      <div class="col-md-8 mx-auto">
+      <div class="col-md-8 mx-auto ">
         <h2>การใช้งานพื้นฐานใน Vue.js</h2>
-        <div>
+        <div class="col-md-8 mx-auto">
           <button @click="activeTab = 'bind'" :class="{'active-tab': activeTab === 'bind'}">v-bind</button>
           <button @click="activeTab = 'model'" :class="{'active-tab': activeTab === 'model'}">v-model</button>
           <button @click="activeTab = 'if'" :class="{'active-tab': activeTab === 'if'}">v-if</button>
@@ -151,7 +151,7 @@ export default {
 
 <style>
 button {
-  margin-right: 10px;
+  margin: 10px;
   padding: 10px;
   cursor: pointer;
 }

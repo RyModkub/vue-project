@@ -49,7 +49,7 @@
           <div>
             <h2>Welcome to Vue.js</h2>
             <router-link class="btn" to="/">หน้าแรก</router-link> |
-            <router-link class="btn" to="/about">เกี่ยวกับเรา</router-link>
+            <router-link class="btn" to="/GroupName">เกี่ยวกับเรา</router-link>
             <router-view></router-view>
           </div>
         </code></pre><br>
