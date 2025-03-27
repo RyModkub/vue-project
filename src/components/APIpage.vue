@@ -137,7 +137,10 @@
           <h5>Vue.js (Server-side)</h5>
           <pre><code style="text-align: left;"><br>
             app.post("/items", (req, res) => {<br>
-          const newItem = { id: Date.now(), name: req.body.name };<br>
+          const newItem = {<br>
+          id: items.length + 1,<br>
+          name: req.body.name<br>
+            };<br>
           items.push(newItem);<br>
             res.json(newItem);<br>
             });
